@@ -43,7 +43,8 @@ Then open <http://127.0.0.1:8080>.
 
 The site also has a **Football Timeline** (`football-timeline/`), a page to
 read rather than a game: pick an era (60s–20s) and a year from 1960 to 2026 to
-see that year's Ballon d'Or podium, international, club and league winners, and
+see that year's top 3 players (picked on form and skill, with the official
+Ballon d'Or podium for reference), international, club and league winners, and
 a few iconic moments. Arrow keys move between eras and years, and the URL hash
 (`#1994`) links to a year.
 

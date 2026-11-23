@@ -75,6 +75,8 @@
 .step-1 .podium-rank { color: #fffdf7; }
 .step-2 .podium-block-shape { height: 76px; }
 .step-3 .podium-block-shape { height: 56px; }
+.official-podium { display: flex; flex-direction: column; gap: 3px; margin: 14px 0 0; font-size: 13px; line-height: 1.5; }
+.official-names { color: #3d4237; }
 .womens-ballon { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; margin: 14px 0 0; padding: 10px 12px; border: 1px dashed #c7c9bc; border-radius: 9px; font-size: 14px; }
 .womens-ballon .trophy-label { flex-basis: 100%; }
 

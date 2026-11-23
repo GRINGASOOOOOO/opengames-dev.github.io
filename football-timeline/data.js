@@ -570,6 +570,82 @@ var FOOTBALL = (function () {
     2025: 'Aitana Bonmatí|Barcelona|Spain' };
   Object.keys(womensBallon).forEach(function (y) { years[y].w = womensBallon[y]; });
 
+  // Top 3 picked on form and skill in that calendar year, open to every
+  // nationality and league. An editorial judgement, unlike the Ballon d'Or
+  // podium kept above for reference. Format: name|club|nation; x3.
+  var picks = {};
+  ('1960=Alfredo Di Stéfano|Real Madrid|Argentina / Spain;Pelé|Santos|Brazil;Ferenc Puskás|Real Madrid|Hungary\n' +
+   '1961=Pelé|Santos|Brazil;Alfredo Di Stéfano|Real Madrid|Argentina / Spain;Omar Sívori|Juventus|Argentina / Italy\n' +
+   '1962=Garrincha|Botafogo|Brazil;Pelé|Santos|Brazil;Josef Masopust|Dukla Prague|Czechoslovakia\n' +
+   '1963=Pelé|Santos|Brazil;Lev Yashin|Dynamo Moscow|USSR;Eusébio|Benfica|Portugal\n' +
+   '1964=Pelé|Santos|Brazil;Luis Suárez|Inter|Spain;Denis Law|Manchester United|Scotland\n' +
+   '1965=Eusébio|Benfica|Portugal;Pelé|Santos|Brazil;Giacinto Facchetti|Inter|Italy\n' +
+   '1966=Bobby Charlton|Manchester United|England;Eusébio|Benfica|Portugal;Franz Beckenbauer|Bayern Munich|West Germany\n' +
+   '1967=Pelé|Santos|Brazil;Flórián Albert|Ferencváros|Hungary;Bobby Charlton|Manchester United|England\n' +
+   '1968=George Best|Manchester United|Northern Ireland;Pelé|Santos|Brazil;Bobby Charlton|Manchester United|England\n' +
+   '1969=Pelé|Santos|Brazil;Gianni Rivera|AC Milan|Italy;Gerd Müller|Bayern Munich|West Germany\n' +
+   '1970=Pelé|Santos|Brazil;Gerd Müller|Bayern Munich|West Germany;Jairzinho|Botafogo|Brazil\n' +
+   '1971=Johan Cruyff|Ajax|Netherlands;Franz Beckenbauer|Bayern Munich|West Germany;George Best|Manchester United|Northern Ireland\n' +
+   '1972=Franz Beckenbauer|Bayern Munich|West Germany;Gerd Müller|Bayern Munich|West Germany;Johan Cruyff|Ajax|Netherlands\n' +
+   '1973=Johan Cruyff|Barcelona|Netherlands;Gerd Müller|Bayern Munich|West Germany;Franz Beckenbauer|Bayern Munich|West Germany\n' +
+   '1974=Johan Cruyff|Barcelona|Netherlands;Franz Beckenbauer|Bayern Munich|West Germany;Gerd Müller|Bayern Munich|West Germany\n' +
+   '1975=Franz Beckenbauer|Bayern Munich|West Germany;Johan Cruyff|Barcelona|Netherlands;Oleg Blokhin|Dynamo Kyiv|USSR\n' +
+   '1976=Franz Beckenbauer|Bayern Munich|West Germany;Zico|Flamengo|Brazil;Rob Rensenbrink|Anderlecht|Netherlands\n' +
+   '1977=Zico|Flamengo|Brazil;Kevin Keegan|Hamburger SV|England;Allan Simonsen|Borussia Mönchengladbach|Denmark\n' +
+   '1978=Mario Kempes|Valencia|Argentina;Kevin Keegan|Hamburger SV|England;Rob Rensenbrink|Anderlecht|Netherlands\n' +
+   '1979=Diego Maradona|Argentinos Juniors|Argentina;Zico|Flamengo|Brazil;Kevin Keegan|Hamburger SV|England\n' +
+   '1980=Diego Maradona|Argentinos Juniors|Argentina;Karl-Heinz Rummenigge|Bayern Munich|West Germany;Zico|Flamengo|Brazil\n' +
+   '1981=Zico|Flamengo|Brazil;Diego Maradona|Boca Juniors|Argentina;Karl-Heinz Rummenigge|Bayern Munich|West Germany\n' +
+   '1982=Paolo Rossi|Juventus|Italy;Zico|Flamengo|Brazil;Sócrates|Corinthians|Brazil\n' +
+   '1983=Michel Platini|Juventus|France;Zico|Udinese|Brazil;Kenny Dalglish|Liverpool|Scotland\n' +
+   '1984=Michel Platini|Juventus|France;Diego Maradona|Napoli|Argentina;Zico|Udinese|Brazil\n' +
+   '1985=Michel Platini|Juventus|France;Diego Maradona|Napoli|Argentina;Enzo Francescoli|River Plate|Uruguay\n' +
+   '1986=Diego Maradona|Napoli|Argentina;Gary Lineker|Barcelona|England;Igor Belanov|Dynamo Kyiv|USSR\n' +
+   '1987=Diego Maradona|Napoli|Argentina;Ruud Gullit|AC Milan|Netherlands;Paulo Futre|Atlético Madrid|Portugal\n' +
+   '1988=Marco van Basten|AC Milan|Netherlands;Ruud Gullit|AC Milan|Netherlands;Romário|PSV Eindhoven|Brazil\n' +
+   '1989=Marco van Basten|AC Milan|Netherlands;Diego Maradona|Napoli|Argentina;Franco Baresi|AC Milan|Italy\n' +
+   '1990=Lothar Matthäus|Inter|West Germany;Diego Maradona|Napoli|Argentina;Salvatore Schillaci|Juventus|Italy\n' +
+   '1991=Jean-Pierre Papin|Marseille|France;Dejan Savićević|Red Star Belgrade|Yugoslavia;Lothar Matthäus|Inter|Germany\n' +
+   '1992=Marco van Basten|AC Milan|Netherlands;Hristo Stoichkov|Barcelona|Bulgaria;Raí|São Paulo|Brazil\n' +
+   '1993=Roberto Baggio|Juventus|Italy;Romário|Barcelona|Brazil;Dennis Bergkamp|Inter|Netherlands\n' +
+   '1994=Romário|Barcelona|Brazil;Roberto Baggio|Juventus|Italy;Hristo Stoichkov|Barcelona|Bulgaria\n' +
+   '1995=George Weah|AC Milan|Liberia;Jari Litmanen|Ajax|Finland;Jürgen Klinsmann|Bayern Munich|Germany\n' +
+   '1996=Ronaldo|Barcelona|Brazil;Matthias Sammer|Borussia Dortmund|Germany;Alan Shearer|Newcastle United|England\n' +
+   '1997=Ronaldo|Inter|Brazil;Zinedine Zidane|Juventus|France;Predrag Mijatović|Real Madrid|FR Yugoslavia\n' +
+   '1998=Zinedine Zidane|Juventus|France;Ronaldo|Inter|Brazil;Davor Šuker|Real Madrid|Croatia\n' +
+   '1999=Rivaldo|Barcelona|Brazil;David Beckham|Manchester United|England;Andriy Shevchenko|AC Milan|Ukraine\n' +
+   '2000=Zinedine Zidane|Juventus|France;Luís Figo|Real Madrid|Portugal;Andriy Shevchenko|AC Milan|Ukraine\n' +
+   '2001=Raúl|Real Madrid|Spain;Michael Owen|Liverpool|England;Zinedine Zidane|Real Madrid|France\n' +
+   '2002=Ronaldo|Real Madrid|Brazil;Zinedine Zidane|Real Madrid|France;Rivaldo|AC Milan|Brazil\n' +
+   '2003=Thierry Henry|Arsenal|France;Zinedine Zidane|Real Madrid|France;Pavel Nedvěd|Juventus|Czech Republic\n' +
+   '2004=Ronaldinho|Barcelona|Brazil;Thierry Henry|Arsenal|France;Andriy Shevchenko|AC Milan|Ukraine\n' +
+   '2005=Ronaldinho|Barcelona|Brazil;Steven Gerrard|Liverpool|England;Kaká|AC Milan|Brazil\n' +
+   '2006=Zinedine Zidane|Real Madrid|France;Ronaldinho|Barcelona|Brazil;Fabio Cannavaro|Real Madrid|Italy\n' +
+   '2007=Kaká|AC Milan|Brazil;Cristiano Ronaldo|Manchester United|Portugal;Lionel Messi|Barcelona|Argentina\n' +
+   '2008=Cristiano Ronaldo|Manchester United|Portugal;Lionel Messi|Barcelona|Argentina;Xavi|Barcelona|Spain\n' +
+   '2009=Lionel Messi|Barcelona|Argentina;Xavi|Barcelona|Spain;Cristiano Ronaldo|Real Madrid|Portugal\n' +
+   '2010=Lionel Messi|Barcelona|Argentina;Andrés Iniesta|Barcelona|Spain;Wesley Sneijder|Inter|Netherlands\n' +
+   '2011=Lionel Messi|Barcelona|Argentina;Cristiano Ronaldo|Real Madrid|Portugal;Xavi|Barcelona|Spain\n' +
+   '2012=Lionel Messi|Barcelona|Argentina;Cristiano Ronaldo|Real Madrid|Portugal;Andrés Iniesta|Barcelona|Spain\n' +
+   '2013=Cristiano Ronaldo|Real Madrid|Portugal;Lionel Messi|Barcelona|Argentina;Franck Ribéry|Bayern Munich|France\n' +
+   '2014=Cristiano Ronaldo|Real Madrid|Portugal;Lionel Messi|Barcelona|Argentina;Manuel Neuer|Bayern Munich|Germany\n' +
+   '2015=Lionel Messi|Barcelona|Argentina;Cristiano Ronaldo|Real Madrid|Portugal;Neymar|Barcelona|Brazil\n' +
+   '2016=Cristiano Ronaldo|Real Madrid|Portugal;Lionel Messi|Barcelona|Argentina;Antoine Griezmann|Atlético Madrid|France\n' +
+   '2017=Cristiano Ronaldo|Real Madrid|Portugal;Lionel Messi|Barcelona|Argentina;Neymar|Paris Saint-Germain|Brazil\n' +
+   '2018=Luka Modrić|Real Madrid|Croatia;Cristiano Ronaldo|Juventus|Portugal;Kylian Mbappé|Paris Saint-Germain|France\n' +
+   '2019=Lionel Messi|Barcelona|Argentina;Virgil van Dijk|Liverpool|Netherlands;Cristiano Ronaldo|Juventus|Portugal\n' +
+   '2020=Robert Lewandowski|Bayern Munich|Poland;Kevin De Bruyne|Manchester City|Belgium;Lionel Messi|Barcelona|Argentina\n' +
+   '2021=Lionel Messi|Paris Saint-Germain|Argentina;Robert Lewandowski|Bayern Munich|Poland;Karim Benzema|Real Madrid|France\n' +
+   '2022=Lionel Messi|Paris Saint-Germain|Argentina;Karim Benzema|Real Madrid|France;Kylian Mbappé|Paris Saint-Germain|France\n' +
+   '2023=Erling Haaland|Manchester City|Norway;Rodri|Manchester City|Spain;Kylian Mbappé|Paris Saint-Germain|France\n' +
+   '2024=Vinícius Júnior|Real Madrid|Brazil;Rodri|Manchester City|Spain;Jude Bellingham|Real Madrid|England\n' +
+   '2025=Ousmane Dembélé|Paris Saint-Germain|France;Lamine Yamal|Barcelona|Spain;Vitinha|Paris Saint-Germain|Portugal\n' +
+   '2026=Harry Kane|Bayern Munich|England;Lamine Yamal|Barcelona|Spain;Kylian Mbappé|Real Madrid|France')
+    .split('\n').forEach(function (line) {
+      var parts = line.split('=');
+      picks[parts[0]] = parts[1].split(';').map(function (p) { p = p.split('|'); return { name: p[0], club: p[1], nation: p[2] }; });
+    });
+
   // Assemble one object per year for the page.
   function trophy(label, entry) { return entry && { label: label, winner: entry[0], detail: entry[1], host: entry[2] }; }
   function split(label, entry) { if (!entry) return null; var parts = entry.split('|'); return { label: label, winner: parts[0], detail: parts[1] }; }
@@ -579,9 +655,10 @@ var FOOTBALL = (function () {
     all[y] = {
       year: y,
       headline: story.h,
-      podiumLabel: story.pl || 'Ballon d’Or podium',
-      podiumNote: story.pn || '',
-      podium: story.p.map(function (p) { return { name: p[0], club: p[1], nation: p[2] }; }),
+      podium: picks[y],
+      ballonLabel: story.pl || 'Ballon d’Or',
+      ballonNote: story.pn || '',
+      ballon: story.p.map(function (p) { return { name: p[0], club: p[1], nation: p[2] }; }),
       womensBallon: story.w ? (function (w) { return { name: w[0], club: w[1], nation: w[2] }; })(story.w.split('|')) : null,
       note: story.note || '',
       moments: story.m.map(function (m) { return { title: m[0], text: m[1] }; }),

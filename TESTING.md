@@ -166,6 +166,10 @@ Passed:
 Payload, uncompressed: data.js 60 KB, app.js 8 KB, style.css 10 KB, page 4 KB,
 plus shared/root CSS.
 
+Later the same day the top 3 changed from the Ballon d'Or podium to an
+editorial pick (D14). Reran the timeline data and browser tests (pass) and
+inspected 1986 at 390×844. Asset token is now `2026-11-23b`.
+
 Not verified: Firefox, Safari and physical devices; screen-reader use. Facts
 were checked against news sources only for 2025–26 results and the 1991 podium
 tie; the rest come from established records and were not independently

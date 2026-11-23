@@ -10,6 +10,8 @@ test('every year from first to last has a full entry', () => {
     assert.ok(d.headline, `${y} headline`);
     assert.equal(d.podium.length, 3, `${y} podium`);
     d.podium.forEach(p => assert.ok(p.name && p.club && p.nation, `${y} podium entry`));
+    assert.equal(d.ballon.length, 3, `${y} Ballon d'Or podium`);
+    assert.equal(new Set(d.podium.map(p => p.name)).size, 3, `${y} duplicate pick`);
     assert.ok(d.moments.length >= 2, `${y} moments`);
     d.moments.forEach(m => assert.ok(m.title && m.text, `${y} moment`));
     assert.ok(d.clubs.length >= 2 && d.clubs.every(c => c.label && c.winner), `${y} clubs`);
@@ -32,7 +34,11 @@ test('known anchors', () => {
   assert.equal(F.years[2005].clubs[0].winner, 'Liverpool');
   assert.equal(F.years[2016].leagues[0].winner, 'Leicester City');
   assert.equal(F.years[2019].leagues[5].winner, 'Flamengo');
-  assert.equal(F.years[2008].podium[0].name, 'Cristiano Ronaldo');
+  assert.equal(F.years[2008].ballon[0].name, 'Cristiano Ronaldo');
+  // Picks include players the Ballon d'Or excluded before 1995.
+  assert.equal(F.years[1970].podium[0].name, 'Pelé');
+  assert.equal(F.years[1986].podium[0].name, 'Diego Maradona');
+  assert.ok(F.years[1994].podium.some(p => p.name === 'Romário'));
   assert.equal(F.years[2026].international[0].winner, 'Spain');
   assert.deepEqual(F.worldCupYears.filter(y => y % 4 !== 2), []);
 });

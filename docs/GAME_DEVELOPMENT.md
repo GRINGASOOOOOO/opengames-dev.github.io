@@ -32,7 +32,7 @@ Keep viewport-fit=cover, metadata, shared favicon, skip link, and noscript text.
 Use relative paths for runtime assets and navigation.
 
 Every local stylesheet and script URL carries one release token, currently
-`?v=2026-11-23`, on every page (homepage and source page included). When any
+`?v=2026-11-23b`, on every page (homepage and source page included). When any
 runtime CSS/JS file changes, replace the token on all pages. Otherwise a browser
 or GitHub Pages cache can pair a new game file with an old shared helper; this
 happened during Blocks development and broke its drawing. The browser suite

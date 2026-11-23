@@ -111,7 +111,6 @@
     $('year-note').hidden = !info.note;
     $('year-note').textContent = info.note;
 
-    $('podium-label').textContent = info.podiumLabel;
     var podium = $('podium');
     podium.replaceChildren.apply(podium, info.podium.map(function (p, i) {
       var li = el('li', 'step-' + (i + 1));
@@ -123,8 +122,12 @@
       li.append(el('span', 'sr-only', ['First', 'Second', 'Third'][i] + ': '), card, block);
       return li;
     }));
-    $('podium-note').hidden = !info.podiumNote;
-    $('podium-note').textContent = info.podiumNote;
+    var official = $('official-podium');
+    official.replaceChildren(el('span', 'trophy-label', info.ballonLabel));
+    var names = el('span', 'official-names');
+    names.textContent = info.ballon.map(function (p, i) { return (i + 1) + '. ' + p.name; }).join('  ·  ');
+    official.append(names);
+    if (info.ballonNote) official.append(el('span', 'trophy-detail', info.ballonNote));
     var wb = $('womens-ballon');
     wb.hidden = !info.womensBallon;
     if (info.womensBallon) {

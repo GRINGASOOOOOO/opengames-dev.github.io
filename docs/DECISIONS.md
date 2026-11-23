@@ -237,10 +237,13 @@ winners: World Cup, Euro, Copa América and Women's World Cup; European Cup /
 Champions League, Libertadores and the world club title; and the league
 champions of England, Spain, Italy, Germany, France and Brazil.
 
-- Top 3 is the Ballon d'Or podium (FIFA Ballon d'Or 2010–15; FIFA The Best for
-  2020, when it was not awarded). It is an established, checkable ranking
-  rather than an editorial pick; the page notes the pre-1995 European-only rule.
-  The women's Ballon d'Or winner is shown from 2018.
+- Top 3 is an editorial pick per calendar year, judged on form and skill and
+  open to every nationality and league (`picks` in `data.js`). The first
+  version used the Ballon d'Or podium; the user changed this because it left
+  out Pelé, Garrincha, Zico, Maradona and Romário (non-Europeans could not win
+  before 1995). The official podium (FIFA Ballon d'Or 2010–15, FIFA The Best
+  for 2020) stays as a reference line under the picks. The women's Ballon d'Or
+  winner is shown from 2018.
 - Range 1960–2026, matching the user's example eras. 2026 shows results known
   on 2026-11-23 and marks the Libertadores and Brasileirão as in progress.
   Update `data.js` when they finish.
