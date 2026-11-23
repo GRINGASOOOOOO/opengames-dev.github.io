@@ -138,6 +138,39 @@ now also asserting one asset token across all pages; `input-browser.cjs`; and
 did not affect layout CSS). Cache behaviour itself is not automated; the token
 check guards the convention.
 
+## Football Timeline (2026-11-23)
+
+Scope: new `football-timeline/` page, homepage card and root `style.css`
+additions, asset token bumped to `2026-11-23` on every page.
+
+Environment: Linux, Node 22, the pre-installed Playwright Chromium. Firefox was
+not available, so the Firefox halves of the browser and focus suites did not run.
+
+Passed:
+
+- `node --test tests/timeline.test.cjs tests/logic.test.cjs`: 20 tests. Every
+  year 1960–2026 has a headline, 3 podium entries, at least 2 moments, club
+  winners and 6 league entries; eras cover the range with no gaps.
+- `tests/timeline-browser.cjs` (Chromium, `file://`): every year rendered at
+  1440×900, 768×1024, 390×844, 320×568 and 844×390 with no horizontal overflow
+  and all buttons at least 44×44px (the 320px check first failed on the era
+  buttons; they now wrap into two rows). Mouse and keyboard navigation (arrows,
+  Home/End, step buttons across eras), hash links, bounds, invalid-hash
+  fallback, no console errors.
+- Existing suites rerun in Chromium with `SKIP_FIREFOX=1`: `browser.cjs`
+  (including the single asset-token check and the 6-card homepage count),
+  `focus-browser.cjs`, `input-browser.cjs`. All passed.
+- Visual inspection: timeline at 1440×900 (1970), 390×844 (2026), 320×568
+  (1991), and the new homepage card.
+
+Payload, uncompressed: data.js 60 KB, app.js 8 KB, style.css 10 KB, page 4 KB,
+plus shared/root CSS.
+
+Not verified: Firefox, Safari and physical devices; screen-reader use. Facts
+were checked against news sources only for 2025–26 results and the 1991 podium
+tie; the rest come from established records and were not independently
+re-verified line by line.
+
 ## Device checks still needed
 
 Touch and mobile layouts were tested through desktop browser emulation, not

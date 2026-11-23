@@ -41,6 +41,12 @@ Then open <http://127.0.0.1:8080>.
 | Flap | Tap/click the board, Space / Enter / ↑ / W, gamepad A or D-pad up | Gap size and speed; slightly faster as you score |
 | Blocks | Arrows / WASD, X / Z rotate, Space drops; swipe to move, tap to rotate; on-screen buttons; gamepad | Starting level 1, 3, or 6; faster every 10 lines |
 
+The site also has a **Football Timeline** (`football-timeline/`), a page to
+read rather than a game: pick an era (60s–20s) and a year from 1960 to 2026 to
+see that year's Ballon d'Or podium, international, club and league winners, and
+a few iconic moments. Arrow keys move between eras and years, and the URL hash
+(`#1994`) links to a year.
+
 All games have immediate restart, difficulty selection, optional synthesized
 sound, and fullscreen. Escape closes settings or exits fullscreen first; during
 normal play it pauses. R restarts.
@@ -102,6 +108,7 @@ memory/                  DOM cards and original SVG symbols
 whac-a-mole/             DOM holes and original SVG moles
 flap/                    Canvas game and pure flight/collision logic
 blocks/                  Tall canvas well and pure falling-block logic
+football-timeline/       Football history explorer: data.js and app.js
 tests/                   Logic and optional browser checks
 AGENTS.md                Coding-agent entry point and working conventions
 docs/GAME_DEVELOPMENT.md  New-game implementation and evaluation guide
@@ -133,6 +140,10 @@ wall/body collisions, tail movement, and full-board victory; Flap's gravity,
 ceiling, crashes, single scoring, reachable gaps, and an autopilot clearing 50
 posts per difficulty; and Blocks' bags, rotation, kicks, gravity, lock delay,
 line clears, scoring, levels, and top-out.
+
+`node --test tests/timeline.test.cjs` checks that every timeline year has a
+full entry. `node tests/timeline-browser.cjs` (Playwright, Chromium, over
+`file://`) renders every year at five viewport sizes and checks navigation.
 
 Browser checks are optional development tools, not app dependencies. With Node
 20+ and Playwright available outside the repository, start the preview server
