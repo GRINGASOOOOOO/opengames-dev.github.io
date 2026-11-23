@@ -225,6 +225,38 @@ serves files with a short cache lifetime, so visitors could hit the same mix
 after a deploy. A query token keeps the static, no-build approach (D06) and
 still works over `file://`.
 
+## D14 — Football Timeline (added 2026-11-23)
+
+**Decision:** A read-only explorer page, `football-timeline/`, not a game. It
+uses the site header, palette, fonts and buttons, but not the game shell (no
+board, overlay, pause, difficulty, sound or fullscreen), because there is
+nothing to play. Seven era buttons (60s–20s) choose a decade; a year rail shows
+its years, with World Cup years marked by a diamond (shape, not just color).
+Each year shows a headline, a top-3 podium, two or three iconic moments, and
+winners: World Cup, Euro, Copa América and Women's World Cup; European Cup /
+Champions League, Libertadores and the world club title; and the league
+champions of England, Spain, Italy, Germany, France and Brazil.
+
+- Top 3 is the Ballon d'Or podium (FIFA Ballon d'Or 2010–15; FIFA The Best for
+  2020, when it was not awarded). It is an established, checkable ranking
+  rather than an editorial pick; the page notes the pre-1995 European-only rule.
+  The women's Ballon d'Or winner is shown from 2018.
+- Range 1960–2026, matching the user's example eras. 2026 shows results known
+  on 2026-11-23 and marks the Libertadores and Brasileirão as in progress.
+  Update `data.js` when they finish.
+- Seasons are listed by the year they ended. Contested titles are labelled
+  (1987 Brazil, 2005 Italy, 1993 France).
+- Data is a plain script (`window.FOOTBALL`, also `module.exports`) so the page
+  works over `file://` with no fetch. The URL hash (`#1994`) selects a year; no
+  storage is used. Default year 1970.
+- The homepage lists it in a separate "Something to read" section, so the game
+  count and "06 games" copy stay accurate.
+
+**Reason:** The user asked for a football timeline by era where choosing a year
+shows the best players, who won what, and iconic moments. Recent results
+(2025–26) were checked against news sources; older data is from established
+records and should be corrected by issue or pull request if an error is found.
+
 ## Maintaining this record
 
 For a new decision, add a stable D-number, date, choice, reason, affected files

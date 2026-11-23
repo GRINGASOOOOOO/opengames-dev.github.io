@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f8f7f2">
+  <meta name="description" content="A football timeline from 1960 to today. Pick an era and a year to see the best players, the winners, and the moments people still talk about.">
+  <title>Football Timeline — OpenGames</title>
+  <link rel="icon" href="../shared/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../shared/style.css?v=2026-11-23">
+  <link rel="stylesheet" href="../style.css?v=2026-11-23">
+  <link rel="stylesheet" href="style.css?v=2026-11-23">
+  <script defer src="data.js?v=2026-11-23"></script>
+  <script defer src="app.js?v=2026-11-23"></script>
+</head>
+<body class="timeline-page">
+  <a class="skip-link" href="#year-panel">Skip to the selected year</a>
+  <header class="site-header">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>OpenGames</a>
+    <a class="back-link" href="../index.html">← All games</a>
+  </header>
+  <main class="timeline-main" id="main">
+    <section class="timeline-intro" aria-labelledby="page-title">
+      <p class="eyebrow">Football · 1960–2026</p>
+      <h1 id="page-title">The football timeline</h1>
+      <p class="intro-copy">Pick an era, then a year.</p>
+    </section>
+
+    <nav class="era-rail" aria-label="Eras" id="era-rail"></nav>
+
+    <section class="era-card" id="era-card" aria-live="polite">
+      <div><p class="era-range" id="era-range"></p><h2 id="era-name"></h2></div>
+      <p id="era-blurb"></p>
+      <ul class="era-keys" id="era-keys" aria-label="Defined by"></ul>
+    </section>
+
+    <nav class="year-rail-wrap" aria-label="Years in this era">
+      <ol class="year-rail" id="year-rail"></ol>
+      <p class="rail-legend"><span class="legend-star" aria-hidden="true"></span>World Cup year</p>
+    </nav>
+
+    <article class="year-panel" id="year-panel" tabindex="-1" aria-labelledby="year-title">
+      <header class="year-head">
+        <button class="step" id="prev-year" type="button" aria-label="Previous year">←</button>
+        <div class="year-titles">
+          <h2 id="year-title"></h2>
+          <p class="year-headline" id="year-headline"></p>
+        </div>
+        <button class="step" id="next-year" type="button" aria-label="Next year">→</button>
+      </header>
+      <p class="year-note" id="year-note" hidden></p>
+
+      <div class="year-grid">
+        <section class="panel-block podium-block" aria-labelledby="podium-title">
+          <h3 id="podium-title">Top 3 players</h3>
+          <p class="block-sub" id="podium-label"></p>
+          <ol class="podium" id="podium"></ol>
+          <p class="block-note" id="podium-note" hidden></p>
+          <p class="womens-ballon" id="womens-ballon" hidden></p>
+        </section>
+
+        <section class="panel-block moments-block" aria-labelledby="moments-title">
+          <h3 id="moments-title">Iconic moments</h3>
+          <ol class="moments" id="moments"></ol>
+        </section>
+
+        <section class="panel-block winners-block" aria-labelledby="winners-title">
+          <h3 id="winners-title">Who won what</h3>
+          <div class="winners-columns">
+            <div id="intl-wrap"><h4>Countries</h4><ul class="trophies" id="intl"></ul></div>
+            <div><h4>Clubs</h4><ul class="trophies" id="clubs"></ul></div>
+            <div><h4>Leagues</h4><ul class="leagues" id="leagues"></ul></div>
+          </div>
+        </section>
+      </div>
+    </article>
+    <noscript><p class="year-note">The timeline needs JavaScript to show each year.</p></noscript>
+    <p class="sources-note">Top 3 is the Ballon d’Or podium; only European players were eligible before 1995. Seasons are listed by the year they ended.</p>
+  </main>
+  <footer class="site-footer"><p>OpenGames.dev · Small games. Simple pleasures.</p><a href="../index.html">Find your next little escape ↗</a></footer>
+</body>
+</html>
